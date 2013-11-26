@@ -20,11 +20,6 @@
     <my.javac classpath="/usr/share/java/junit.jar" includes="*.java" />
   </target>
 
-  <!-- run target: runs unit tests using main method -->
-  <target name="run" depends="compile">
-    <my.java classpath="/usr/share/java/junit.jar" classname="gIntTest" />
-  </target>
-
   <!-- test target: runs unit tests -->
   <target name="test" depends="compile">
     <junit>
