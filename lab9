@@ -1,5 +1,28 @@
-Q1.1: Segmentation fault, file called core is new in the directory.
+Q1.1: Segmentation fault core dumped.  A file called core is new in the directory.
 
 Q1.2: It bombed in inTable function.
 
 Q1.3: 
+bug1.c scanf required a pointer to an object of the same type in the format string.
+Figured out it was scanf with bt in gdb using gdb bug1 -c core; bt
+Fixed scanf to reference the allocated object.
+  scanf( "%d", &n );
+
+bug2.c the format string for float and int were switched.
+Compiler warning
+bug2.c: In function ‘main’:
+bug2.c:8:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘double’ [-Wformat]
+bug2.c:8:2: warning: format ‘%f’ expects argument of type ‘double’, but argument 3 has type ‘int’ [-Wformat]
+When compiled and run the values are out of order when printed.  Switching them to the proper order fixes it.
+	printf("Pi=%d, n=%f\n", pi, n);
+
+bug3.c For loop was incorrectly iterating through numLines.
+I used gdb to backtrace the core dump.  The segfault happens in the inTable function so I set a breakpoint on inTable.  After that I stepped through in table and found that it core dumped on the first value of numLines.  Looking at how st is built using numLines I see numLines is incremented first.  I corrected this behavior so numLines is incremented after on lines 49:50. 
+	while( numLines<MAX_LINES && fgets( buff, MAX_LINE_LEN, fin ))
+	{
+		st[ numLines ] = strdup( buff );
+		++numLines;
+	}
+
+Alternatively I could have modified the for loop on line 77.
+	for( i=1; i<=numLines; ++i )
