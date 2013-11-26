@@ -1,17 +1,37 @@
 <project default="test">
+  <!-- presets for java and javac to aviod errors and simplify code -->
+  <presetdef name="my.javac">
+    <javac includeantruntime="false" srcdir="." />
+  </presetdef>
+  <presetdef name="my.java">
+    <java fork="true" classpath="." />
+  </presetdef>
+
+  <!-- clean target: deletes all class files -->
   <target name="clean">
     <delete>
       <fileset dir="." includes="*.class" />
     </delete>
+    <echo message="All binary files cleaned.  Run ant [target] to execute a target." />
   </target>
+
+  <!-- compile target: compiles all java files -->
   <target name="compile">
-    <javac srcdir="." includes="*.java" />
+    <my.javac classpath="/usr/share/java/junit.jar" includes="*.java" />
   </target>
+
+  <!-- run target: runs unit tests using main method -->
+  <target name="run" depends="compile">
+    <my.java classpath="/usr/share/java/junit.jar" classname="gIntTest" />
+  </target>
+
+  <!-- test target: runs unit tests -->
   <target name="test" depends="compile">
     <junit>
+      <test name="gIntTest" />
       <classpath path="." />
+      <classpath path="/usr/share/java/junit.jar" />
       <formatter type="brief" usefile="false" />
-      <test name="gInt" />
     </junit>
   </target>
 </project>
