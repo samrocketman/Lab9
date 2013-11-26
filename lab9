@@ -26,3 +26,7 @@ I used gdb to backtrace the core dump.  The segfault happens in the inTable func
 
 Alternatively I could have modified the for loop on line 77.
 	for( i=1; i<=numLines; ++i )
+
+Q1.4: The compiler can't catch this because it is a runtime bug.  The compiler can only catch syntax errors (most reliably) and on occasion throw a warning with mismatched types for function arguments or variable assignment.  It can't detect runtime logic errors like this.
+
+Q1.5: A runtime error will occur.
