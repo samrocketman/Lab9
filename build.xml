@@ -1,4 +1,4 @@
-<project default="compile">
+<project default="test">
   <target name="clean">
     <delete>
       <fileset dir="." includes="*.class" />
