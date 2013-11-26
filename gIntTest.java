@@ -1,3 +1,9 @@
+/*
+   Sam Gleske
+   Mon Nov 25 21:27:13 EST 2013
+   java version "1.7.0_45"
+   Apache Ant(TM) version 1.8.2 compiled on December 3 2011
+   */
 import junit.framework.*;
 import java.lang.Math;
 
@@ -51,29 +57,3 @@ public class gIntTest extends TestCase
     junit.textui.TestRunner.main( caseName );
   }
 }
-
-
-
-  /*
-  public void testMultiply()
-  {
-  gInt expected= new gInt( -37, 84 );
-  gInt result = gInt1.multiply( gInt2 );
-  Assert.assertEquals( expected, result );
-  }
-
-  public void testNorm()
-  {
-  float expected = 5;
-  float result = gInt1.norm();
-  Assert.assertEquals( expected, result );
-  }
-  public static Test suite()
-  {
-  TestSuite suite= new TestSuite();
-  suite.addTest( new gIntTest( "testAdd" ));
-  //suite.addTest( new gIntTest( "testMultiply" ));
-  //suite.addTest( new gIntTest( "testNorm" ));
-  return suite;
-  }
-  */
